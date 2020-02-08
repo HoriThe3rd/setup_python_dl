@@ -11,7 +11,8 @@ This script sets up below:
 - python packages: ex) numpy, pandas, etc...
 
 ## 概要
-このスクリプトはLinuxにPythonによる機械学習環境(chainer, OpenCV)を構築するためのスクリプトである．具体的には以下の操作が行われる．
+このスクリプトはLinuxにPyenv, pyenv-virtualenvを用いてシステムに付属するものとは別のPython環境を構築するためのスクリプトである．深層学習などを勉強したり，コーディングしたりするための環境が簡単に立ち上げられればと思い後悔した．
+このスクリプトは具体的には以下の操作を行う．
 
 なお，Windows Subsystem for Linux (WSL) でも動作の確認中．環境によっては必要なパッケージをaptで要インストール．
 
