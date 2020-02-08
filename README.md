@@ -40,7 +40,7 @@ pyenvで環境が構築されるので，その環境につけたい名前を引
 ユーザ権限で実行すること．sudoはつけない．
 
 ```sh
-$ ./chainer_env_setup.sh your_env_name
+$ ./setup_env.sh your_env_name
 $ source ~/.bashrc
 ```
 これで全て必要な環境が準備される．確認は，pythonと端末に入力し，python3.6.5が起動すればOK．
