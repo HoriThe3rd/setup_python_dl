@@ -6,6 +6,23 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
+# Install required packages.
+sudo apt update
+sudo apt install build-essential \
+                zlib1g-dev \
+                libbz2-dev \
+                libreadline6-dev \
+                libsqlite3-dev \
+                libssl-dev \
+                libffi-dev \
+                tk-dev
+
+# Check the installation
+if [ $? -ne 0]; then
+    echo "apt install command failed. Exit this script."
+    exit 1
+fi
+
 echo "> Start chainer_env_setup script ..."
 # Please set the python version which you want to install.
 PYTHON_VERSION=3.6.5
