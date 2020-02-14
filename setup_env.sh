@@ -23,7 +23,7 @@ if [ $? -ne 0]; then
     exit 1
 fi
 
-echo "> Start chainer_env_setup script ..."
+echo "> Start python_env_setup script ..."
 # Please set the python version which you want to install.
 PYTHON_VERSION=3.6.5
 
