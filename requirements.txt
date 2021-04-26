@@ -1,0 +1,9 @@
+numpy
+six
+pandas
+matplotlib
+Pillow
+opencv-python
+opencv-contrib-python
+jupyter
+scipy
