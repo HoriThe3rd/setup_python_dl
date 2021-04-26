@@ -2,6 +2,7 @@ numpy
 six
 pandas
 matplotlib
+seaborn
 Pillow
 opencv-python
 opencv-contrib-python

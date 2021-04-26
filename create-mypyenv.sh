@@ -1,5 +1,5 @@
 #!/bin/zsh
-PYTHON_VER=3.9.1
+PYTHON_VER=3.8.9
 PYENV_NAME='myenv'
 
 pyenv install $PYTHON_VER
