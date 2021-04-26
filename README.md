@@ -2,41 +2,14 @@ Python environment setup script
 =====
 
 ## Overview
-This script sets up below:
-
-- Pyenv
-- Pyenv-virtualenv
-- Create new virtual environment
-- Python 3.6.5
-- python packages: ex) numpy, pandas, etc...
-
-## 概要
-このスクリプトはLinuxにPyenv, pyenv-virtualenvを用いてシステムに付属するものとは別のPython環境を構築するためのスクリプトである．深層学習などを勉強したり，コーディングしたりするための環境が簡単に立ち上げられればと思い後悔した．
-このスクリプトは具体的には以下の操作を行う．
-
-なお，Windows Subsystem for Linux (WSL) でも動作の確認中．環境によっては必要なパッケージをaptで要インストール．
-
-- pyenv + pyenv_virtualenvのインストールとセットアップ
-- python3.6.5のインストール
-- python3.6.5におけるchainer用環境をvirtualenvで構築
-- jupyterを入れるのでVSCodeのPython拡張機能があればJupyter Notebook形式でPythonを扱える
-- 構築した環境を全体に適用
-- pipで必要となりそうなパッケージをインストール
+pyenv + pyenv-virtualenvをインストールするスクリプトと，自分用の環境を作るためのスクリプト．
 
 ## インストールパッケージ一覧
-- numpy
-- six
-- matplotlib
-- pandas
-- opencv-python
-- opencv-contrib-python
-- Pillow
-- jupyter
-- 上記に依存するパッケージ（pipで自動的にインストールされる)
+requirements.txtを参照．
 
 ## 使いかた
-このリポジトリをダウンロードし，setup_env.shを実行する．
-pyenvで環境が構築されるので，その環境につけたい名前を引数に与える．
+- setup_env.sh: pyenv, pyenv-virtualenvのインストールとセットアップ．
+- create-mypyenv.sh: pyenvによるPythonインストールとpyenv-virtualenvで環境作成．
 
 ユーザ権限で実行すること．sudoはつけない．
 
