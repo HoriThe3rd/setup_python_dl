@@ -1,62 +1,86 @@
 #!/bin/bash
 
+# Arguments
+# $1: Python version you want to install
+# $2: Virtual environment name will be created by this script
+
 # Check the argument.
 if [ $# -ne 1 ]; then
     echo "Invalid argument. Please give me a new python environment name you want to create."
     exit 1
 fi
 
-# Install required packages.
-sudo apt update
-sudo apt install build-essential \
-                zlib1g-dev \
-                libbz2-dev \
-                libreadline6-dev \
-                libsqlite3-dev \
-                libssl-dev \
-                libffi-dev \
-                tk-dev
+# Get arguments
+PYTHON_VERSION=$1
+PYENV_NAME=$2
 
-# Check the installation
-if [ $? -ne 0]; then
-    echo "apt install command failed. Exit this script."
-    exit 1
-fi
+# Display the arguments and make confirmation
+echo "---------------------------------"
+echo "Please check given options below"
+echo "---------------------------------"
+echo "Python version: ${PYTHON_VERSION}"
+echo "virtual env name: ${PYENV_NAME}"
+echo "---------------------------------"
 
-echo "> Start python_env_setup script ..."
-# Please set the python version which you want to install.
-PYTHON_VERSION=3.6.5
+# Make a confirmation to setup.
+read -p "Continue? [Y/n]: " yn
+case "$yn" in
+    [Yy]|"Yes"|"yes"|"YES")
+        # Install required packages.
+        sudo apt update
+        sudo apt install -y build-essential \
+                        zlib1g-dev \
+                        libbz2-dev \
+                        libreadline6-dev \
+                        libsqlite3-dev \
+                        libssl-dev \
+                        libffi-dev \
+                        tk-dev \
+                        git
 
-# Set the given python environment name.
-PYENV_NAME=$1
+        # Check the installation
+        if [ $? -ne 0]; then
+            echo "apt install command failed. Exit this script."
+            exit 1
+        fi
 
-echo "> Clone pyenv git repository ..."
-git clone https://github.com/yyuu/pyenv.git ~/.pyenv
+        echo "> Python setup starts..."
 
-# Setup arguments.
-PYENV_ROOT="$HOME/.pyenv"
-PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+        echo "> Clone pyenv git repository ..."
+        git clone https://github.com/yyuu/pyenv.git ~/.pyenv
 
-echo "> Setup .bashrc ..."
-echo '# pyenv settings' >> ~/.bashrc
-echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
-echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
-echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+        # Setup arguments.
+        PYENV_ROOT="$HOME/.pyenv"
+        PATH="$PYENV_ROOT/bin:$PATH"
+        eval "$(pyenv init -)"
 
-echo "> Installing pyenv-virtualenv ..."
-git clone http://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+        echo "> Setup .bashrc ..."
+        echo '# pyenv settings' >> ~/.bashrc
+        echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+        echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+        echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 
-echo "> Installing Python ${PYTHON_VERSION} ..."
-pyenv install $PYTHON_VERSION
+        echo "> Installing pyenv-virtualenv ..."
+        git clone http://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
 
-echo "> Create virtual environment ..."
-pyenv virtualenv $PYTHON_VERSION $PYENV_NAME
+        echo "> Installing Python ${PYTHON_VERSION} ..."
+        pyenv install $PYTHON_VERSION
 
-echo "> Apply the environment to your global environment ..."
-pyenv global $PYENV_NAME
+        echo "> Create virtual environment ..."
+        pyenv virtualenv $PYTHON_VERSION $PYENV_NAME
 
-echo "> Installing python packages ..."
-pip install numpy six matplotlib pandas opencv-python opencv-contrib-python Pillow jupyter
+        echo "> Apply the environment to your global environment ..."
+        pyenv global $PYENV_NAME
 
-echo -e "\nScript finished.\n###  PLEASE RESTART YOUR TERMINAL.  ###"
+        echo "> Installing python packages ..."
+        #pip install numpy six matplotlib pandas opencv-python opencv-contrib-python Pillow jupyter
+        pip install 
+
+        echo -e "\nScript finished.\n###  PLEASE RESTART YOUR TERMINAL.  ###"
+        ;;
+
+    [Nn]|"No"|"no"|"NO")
+        echo "Exit with nothing."
+        exit 0
+        ;;
+    
