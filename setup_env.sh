@@ -74,7 +74,7 @@ case "$yn" in
 
         echo "> Installing python packages ..."
         #pip install numpy six matplotlib pandas opencv-python opencv-contrib-python Pillow jupyter
-        pip install 
+        pip install -r requirements.txt
 
         echo -e "\nScript finished.\n###  PLEASE RESTART YOUR TERMINAL.  ###"
         ;;
