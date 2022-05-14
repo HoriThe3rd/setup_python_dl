@@ -5,7 +5,7 @@
 # $2: Virtual environment name will be created by this script
 
 # Check the argument.
-if [ $# -ne 1 ]; then
+if [ $# -ne 2 ]; then
     echo "Invalid argument. Please give me a new python environment name you want to create."
     exit 1
 fi
@@ -83,4 +83,4 @@ case "$yn" in
         echo "Exit with nothing."
         exit 0
         ;;
-    
+esac
