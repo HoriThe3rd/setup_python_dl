@@ -6,7 +6,7 @@
 
 # Check the argument.
 if [ $# -ne 2 ]; then
-    echo "Invalid argument. Please give me a new python environment name you want to create."
+    echo "Invalid argument. \n./setup_env.sh <Python version> <env name>"
     exit 1
 fi
 
@@ -35,8 +35,7 @@ case "$yn" in
                         libsqlite3-dev \
                         libssl-dev \
                         libffi-dev \
-                        tk-dev \
-                        git
+                        tk-dev
 
         # Check the installation
         if [ $? -ne 0]; then
