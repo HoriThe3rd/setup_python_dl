@@ -38,13 +38,15 @@ case "$yn" in
                         tk-dev
 
         # Check the installation
-        if [ $? -ne 0]; then
+        if [ $? -ne 0 ]; then
             echo "apt install command failed. Exit this script."
             exit 1
         fi
 
         # Check existence of pyenv command.
-        if type "pyenv" > /dev/null 2>&1; then
+        if [ type "pyenv" > /dev/null 2>&1 ]; then
+            echo "pyenv already exists."
+        else
             echo "> Clone pyenv git repository ..."
             git clone https://github.com/yyuu/pyenv.git ~/.pyenv
 
@@ -61,8 +63,6 @@ case "$yn" in
 
             echo "> Installing pyenv-virtualenv ..."
             git clone http://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
-        else
-            echo "pyenv already exists."
         fi
 
         echo "> Installing Python ${PYTHON_VERSION} ..."
