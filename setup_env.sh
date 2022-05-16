@@ -44,24 +44,27 @@ case "$yn" in
             exit 1
         fi
 
-        echo "> Python setup starts..."
+        # Check existence of pyenv command.
+        if type "pyenv" > /dev/null 2>&1; then
+            echo "> Clone pyenv git repository ..."
+            git clone https://github.com/yyuu/pyenv.git ~/.pyenv
 
-        echo "> Clone pyenv git repository ..."
-        git clone https://github.com/yyuu/pyenv.git ~/.pyenv
+            # Setup arguments.
+            PYENV_ROOT="$HOME/.pyenv"
+            PATH="$PYENV_ROOT/bin:$PATH"
+            eval "$(pyenv init -)"
 
-        # Setup arguments.
-        PYENV_ROOT="$HOME/.pyenv"
-        PATH="$PYENV_ROOT/bin:$PATH"
-        eval "$(pyenv init -)"
+            echo "> Setup .bashrc ..."
+            echo '# pyenv settings' >> ~/.bashrc
+            echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+            echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+            echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 
-        echo "> Setup .bashrc ..."
-        echo '# pyenv settings' >> ~/.bashrc
-        echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
-        echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
-        echo 'eval "$(pyenv init -)"' >> ~/.bashrc
-
-        echo "> Installing pyenv-virtualenv ..."
-        git clone http://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+            echo "> Installing pyenv-virtualenv ..."
+            git clone http://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+        else
+            echo "pyenv already exists."
+        fi
 
         echo "> Installing Python ${PYTHON_VERSION} ..."
         pyenv install $PYTHON_VERSION
