@@ -9,3 +9,7 @@ opencv-contrib-python
 jupyter
 scipy
 scikit-image
+tqdm
+tensorflow
+keras
+-e git+https://github.com/lucasb-eyer/pydensecrf.git#egg=pydensecrf
