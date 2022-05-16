@@ -73,6 +73,7 @@ case "$yn" in
         pyenv global $PYENV_NAME
 
         echo "> Installing python packages ..."
+        pip install --upgrade pip
         #pip install numpy six matplotlib pandas opencv-python opencv-contrib-python Pillow jupyter
         pip install -r requirements.txt
 

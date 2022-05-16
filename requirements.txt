@@ -12,4 +12,4 @@ scikit-image
 tqdm
 tensorflow
 keras
-pydensecrf
+-e git+https://github.com/lucasb-eyer/pydensecrf.git#egg=pydensecrf
