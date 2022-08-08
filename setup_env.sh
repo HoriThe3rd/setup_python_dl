@@ -35,6 +35,7 @@ case "$yn" in
                         libsqlite3-dev \
                         libssl-dev \
                         libffi-dev \
+                        liblzma-dev \
                         tk-dev
 
         # Check the installation
